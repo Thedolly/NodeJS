@@ -1,6 +1,5 @@
 const config = require("../configs/db.config");
-const Sequelize = require("sequelize")
-
+const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(
     config.DB,
@@ -24,6 +23,10 @@ const db = {}
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+db.Category = require("./category.model")(Sequelize, sequelize);
+//small sequelize is db sequelize 
+//capital one  is object
+
 
 module.exports=db;
 

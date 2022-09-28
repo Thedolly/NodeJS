@@ -1,10 +1,11 @@
 {
   "name": "ecommerce",
   "version": "1.0.0",
-  "description": "",
+  "description": "��#\u0000 \u0000n\u0000o\u0000d\u0000e\u0000-\u0000j\u0000s\u0000-\u0000p\u0000r\u0000o\u0000j\u0000e\u0000c\u0000t\u0000 \u0000e\u0000c\u0000o\u0000m\u0000m\u0000e\u0000r\u0000c\u0000e\u0000 \u0000w\u0000e\u0000b\u0000 \u0000a\u0000p\u0000p\u0000l\u0000i\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000\r\u0000 \u0000",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,5 +16,16 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "sequelize": "^6.23.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thedolly/NodeJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Thedolly/NodeJS/issues"
+  },
+  "homepage": "https://github.com/Thedolly/NodeJS#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
