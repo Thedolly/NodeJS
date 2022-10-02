@@ -3,15 +3,11 @@ const Category = db.Category;
 
 exports.create = (req,res)=>{
 
-    const {name, description} = req.body;
-
-    if(!name){
-        res.status(400).send({message:"name of the category cannot be empty"});
-    }
+   // const {name, description} = req.body;
 
     const category = {
-        name:name,
-        description:description
+        name:req.body.name,
+        description:req.body.description
     };
 
     Category.create(category)
@@ -20,7 +16,7 @@ exports.create = (req,res)=>{
         res.status(201).send(category);
     })
     .catch((err)=>{
-        res.status(500).semd({message:"Something went wrong"});
+        res.status(500).send({message:"Something went wrong"});
     })
    
 }

@@ -1,9 +1,9 @@
 const categoryControllers = require("../controllers/category.controllers");
-
+const {requestValidator} = require("../Middlewares");
 
 module.exports = (app) => {
     //create new category
-    app.post("/ecomm/api/v1/category", categoryControllers.create);
+    app.post("/ecomm/api/v1/category", requestValidator.validateCategoryRequest, categoryControllers.create);
 
     //get all the routes
     app.get("/ecomm/api/v1/category", categoryControllers.getAll);
