@@ -13,6 +13,8 @@ const validateCategoryRequest = (req,res,next)=>{
 
 const validateProductRequest = (req,res,next)=>{
 
+    console.log("validate product request");
+
     if(!req.body.name || !req.body.cost || !req.body.description){
         res.status(400).send({message:"Name of the product cannot  be empty"});
         return;

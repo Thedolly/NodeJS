@@ -20,4 +20,6 @@ module.exports=(app)=>{
      //you want a product with a productId under a category as categoryId
     app.get("/ecomm/api/v1/category/:categoryId/products/:productId", requestValidator.validateCategoryAndProductPassed, ProductControllers.findProductUnderCategory);
 
+    
+
 }

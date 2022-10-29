@@ -1,4 +1,5 @@
 
+const { and } = require("sequelize");
 const db = require("../models");
 //const CategoryController = require("../controllers/category.controllers")
 
@@ -6,7 +7,13 @@ const Product = db.Product;
 
 const Category = db.Category;
 
+const Sequelize = db.Sequelize;
+
+const op = Sequelize.Op;
+
 exports.create = (req,res)=>{
+
+    console.log("Product create");
 
     const{name, description, cost, categoryId} = req.body;
     const product = {name, description, cost, categoryId};
@@ -21,7 +28,50 @@ exports.create = (req,res)=>{
 }
 
 exports.findAll = (req,res)=>{
-    Product.findAll()
+
+    let productPromise=null;
+
+    const {minCost,maxCost} = req.query;
+
+   if(req.query.name){
+    productPromise=Product.findAll({
+        where:{
+            
+            cost:req.query.cost
+        }
+    })
+   }else if(minCost && maxCost){
+        productPromise = Product.findAll({
+           where:{
+            cost:{
+                [op.gte]:minCost,
+                [op.lte]:maxCost
+            }
+           }
+        })
+
+   }else if(minCost){
+    productPromise = Product.findAll({
+        where:{
+            cost:{
+                [op.gte]:minCost
+            }
+        }
+    })
+   }else if(maxCost){
+    productPromise = Product.findAll({
+        where:{
+            cost:{
+                [op.lte]:maxCost
+            }
+        }
+    })
+   }
+   else{
+    productPromise= Product.findAll();
+   }
+
+   productPromise
     .then(products=>{
 
         if(products==null){

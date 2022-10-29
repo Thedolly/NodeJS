@@ -25,6 +25,8 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.Category = require("./category.model")(Sequelize, sequelize);
 db.Product = require("./product.model")(Sequelize, sequelize);
+db.User = require("./user.model")(Sequelize,sequelize);
+db.Role = require("./role.model")(Sequelize,sequelize);
 
 
 db.Category.hasMany(db.Product,{
@@ -33,6 +35,15 @@ db.Category.hasMany(db.Product,{
 db.Product.belongsTo(db.Category);
 //small sequelize is db sequelize 
 //capital one  is object
+
+db.Role.belongsToMany(db.User,{
+   through:"userRoles"
+});
+db.User.belongsToMany(db.Role,{
+    through:"userRoles"
+});
+
+db.ROLES = ["user","admin"];
 
 
 module.exports=db;
