@@ -29,6 +29,11 @@ exports.create = (req,res)=>{
 
 exports.findAll = (req,res)=>{
 
+
+    console.log("inside product findAll controller");
+
+    console.log(req.user);
+
     let productPromise=null;
 
     const {minCost,maxCost} = req.query;
