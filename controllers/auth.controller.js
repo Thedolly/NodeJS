@@ -15,7 +15,7 @@ exports.signup= async (req,res)=>{
     const user = await User.create({userName,email,password:bcrypt.hashSync(password,8)});
     
     const userRoles = await Role.findAll({where:{name:{[Sequelize.Op.or]:roles}}});
-
+    console.log(userRoles);
     await user.setRoles(userRoles);
     res.send({message:"user registered successfully"});
    // console.log("err1")
@@ -53,13 +53,23 @@ try{
 
          const token =jwt.sign({ id: user.id }, process.env.SECRET_KEY,{expiresIn:86400});
         console.log(token);
+
+        var roles=[];
+
+        const allRoles= await user.getRoles();
+
+        console.log(allRoles);
+
+        allRoles.forEach(role => {
+            roles.push(role.name);
+        });
    
         //res.send(user)
         res.send({
             id:user.id,
             userName:user.username,
             email:user.email,
-            roles:user.roles,
+            roles:roles,
             accessToken:token
         })
   

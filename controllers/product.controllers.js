@@ -15,6 +15,10 @@ exports.create = (req,res)=>{
 
     console.log("Product create");
 
+     if(!req.isAdmin){
+        return res.status(403).send({message:"OOPS! you are unauthorized to perform this task"});
+     }
+
     const{name, description, cost, categoryId} = req.body;
     const product = {name, description, cost, categoryId};
 
@@ -105,6 +109,11 @@ exports.findOne = (req, res)=>{
 }
 
 exports.update = (req,res)=>{
+
+    if(!req.isAdmin){
+        return res.status(403).send({message:"OOPS! you are unauthorized to perform this task"});
+     }
+
     const productId = req.params.id;
 
     const {name, description, cost, categoryId} = req.body;
@@ -135,6 +144,11 @@ exports.update = (req,res)=>{
 }
 
 exports.delete = (req,res)=>{
+
+    if(!req.isAdmin){
+        return res.status(403).send({message:"OOPS! you are unauthorized to perform this task"});
+     }
+
     const productId = req.params.id;
 
     Product.destroy({

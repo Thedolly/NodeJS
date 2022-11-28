@@ -22,7 +22,7 @@ db.sequelize.sync({force:false})
 //import Auth routes
 require("./Routes/auth.routes")(app);
 
-app.use(authJWT.verifyToken);
+//app.use(authJWT.verifyToken);
 
 
 //imported category routes
@@ -37,6 +37,9 @@ require("./Routes/product.routes")(app);
 require("./Routes/user.routes")(app);
 //import User routes 
 //require("./Routes/user.routes")(app);
+
+//import cart routess
+require("./Routes/cart.routes")(app);
 
 
 
